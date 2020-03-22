@@ -14,6 +14,7 @@ media
 venv
 .vscode
 .DS_store
+access venv.txt
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
