@@ -2,10 +2,13 @@
 {% block content %}
 {% load static %}
 
-<title>About - Page</title>
+<title>MyWeb | About</title>
 
 
-<section id="showcase-inner" class="py-5 text-white">
+
+<section id="showcase-inner"
+style="background-image: url({% static 'img/building.jpg' %});"
+class="py-5 text-white">
     <div class="container">
         <div class="row text-center">
             <div class="col-md-12">
@@ -45,17 +48,20 @@
                     commodi id libero eveniet harum perferendis laborum molestias quia.</p>
             </div>
             <div class="col-md-4">
-                <div class="card">
-                    <img class="card-img-top" src="assets/img/realtors/kyle.jpg" alt="Seller of the month">
-                    <div class="card-body">
-                        <h5 class="card-title">Seller Of The Month</h5>
-                        <h6 class="text-secondary">Kyle Brown</h6>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nesciunt
-                            amet, illo itaque similique repellat.
-                            content.
-                        </p>
-                    </div>
-                </div>
+                {% if mvp %}
+                    {% for rlt in mvp %}
+                        <div class="card">
+                            <img class="card-img-top" src="{{rlt.photo.url}}" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">Seller Of The Month</h5>
+                                <h6 class="text-secondary">{{rlt.name}}</h6>
+                                <p class="card-text">
+                                    {{rlt.description}}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>
@@ -74,39 +80,26 @@
     <div class="container">
         <h2 class="text-center">Our Team</h2>
         <div class="row text-center">
-            <div class="col-md-4">
-                <img src="assets/img/realtors/kyle.jpg" alt="" class="rounded-circle mb-3">
-                <h4>Kyle Brown</h4>
-                <p class="text-success">
-                    <i class="fas fa-award text-success mb-3"></i> Realtor</p>
-                <hr>
-                <p>
-                    <i class="fas fa-phone"></i> (555)-555-5555</p>
-                <p>
-                    <i class="fas fa-envelope-open"></i> kyle@btrealestate.co</p>
+            {% if realtors %}
+            {% for rlt in realtors %}
+                <div class="col-md-4">
+                    <img src="{{rlt.photo.url}}" alt="" class="rounded-circle mb-3">
+                    <h4>{{rlt.name}}</h4>
+                    <p class="text-success">
+                        <i class="fas fa-award text-success mb-3"></i> Realtor </p>
+                    <hr>
+                    <p>
+                        <i class="fas fa-phone"></i> {{rlt.phone}} </p>
+                    <p>
+                        <i class="fas fa-envelope-open"></i> {{rlt.email}} </p>
+                </div>
+            {% endfor %}
+            {% else %}
+            <!-- Show Alert If Realtors are not Avaiables -->
+            <div class="col-md-12 alert alert-warning">
+                <p>No Realtors Avaliable</p>
             </div>
-
-            <div class="col-md-4">
-                <img src="assets/img/realtors/mark.jpg" alt="" class="rounded-circle mb-3">
-                <h4>Mark Hudson</h4>
-                <p class="text-success">Realtor</p>
-                <hr>
-                <p>
-                    <i class="fas fa-phone"></i> (444)-444-4444</p>
-                <p>
-                    <i class="fas fa-envelope-open"></i> mark@btrealestate.co</p>
-            </div>
-
-            <div class="col-md-4">
-                <img src="assets/img/realtors/jenny.jpg" alt="" class="rounded-circle mb-3">
-                <h4>Jenny Johnson</h4>
-                <p class="text-success">Realtor</p>
-                <hr>
-                <p>
-                    <i class="fas fa-phone"></i> (333)-333-3333</p>
-                <p>
-                    <i class="fas fa-envelope-open"></i> jenny@btrealestate.co</p>
-            </div>
+            {% endif %}
         </div>
     </div>
 </section>
