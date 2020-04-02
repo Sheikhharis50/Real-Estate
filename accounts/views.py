@@ -37,7 +37,7 @@ def dashboard(request):
     
     if request.user.is_authenticated:
         user_id = request.user.id
-        contacts = Contact.objects.all().filter(user_id=user_id)
+        contacts = Contact.objects.all().order_by('-contact_date').filter(user_id=user_id)
         context = {
             'contacts': contacts
         }

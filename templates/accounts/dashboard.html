@@ -58,7 +58,7 @@ class="py-5 text-white">
                             <td>{{entry.listing_id}}</td>
                             <td>{{entry.listing}}</td>
                             <td>
-                                <a class="btn btn-light" href="#">View Listing</a>
+                                <a class="btn btn-light" href="{% url 'listing' entry.listing_id %}">View Listing</a>
                             </td>
                         </tr>
                         {% endfor %}
