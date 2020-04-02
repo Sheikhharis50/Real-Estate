@@ -14,7 +14,6 @@ db.sqlite3-journal
 .DS_store
 MyWeb/static
 /venv
-/.vscode
 /static
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
